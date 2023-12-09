@@ -20,3 +20,26 @@ $sa_password = "[SA PASSWORD HERE]"
 
 dotnet user-secrets set  "ConnectionStrings:GameStoreContext" "Server=localhost; Database=GameStore; User Id=sa; Password=$sa_password; TrustServerCertificate=True;"
 ```
+
+## Swagger
+Add Swashbuckle.AspNetCore 6.5.0 package.
+```powershell
+dotnet add package Swashbuckle.AspNetCore --version 6.5.0
+```
+Add the following code.
+```c#
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+// another code
+
+var app = builder.Build();
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+// another code
+```
